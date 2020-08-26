@@ -3,13 +3,13 @@ const http = require('http')
 // highlight-start
 // Import the Plugable module
 const plugable = require('plugable')
-// highlight-stop
+// highlight-end
 
 module.exports = (config = {}) => {
   // highlight-start
   // Initialize our plugin architecture
   const plugins = plugable()
-  // highlight-stop
+  // highlight-end
   const server = http.createServer((req, res) => {
     res.end(config.message)
   })
@@ -17,12 +17,12 @@ module.exports = (config = {}) => {
     // highlight-start
     // Return and expose the plugin instance
     plugins: plugins,
-    // highlight-stop
+    // highlight-end
     start: () => {
       // highlight-start
       // Defined the `start` hook
-      plugins.hook({
-        event: 'server:start',
+      plugins.call({
+        name: 'server:start',
         args: {
           config: config
         },
@@ -30,7 +30,7 @@ module.exports = (config = {}) => {
           server.listen(config.port)
         }
       })
-      // highlight-stop
+      // highlight-end
     },
     stop: () => {
       server.close()

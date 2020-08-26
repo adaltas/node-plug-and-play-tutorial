@@ -3,8 +3,7 @@ const http = require('http')
 const plugable = require('plugable')
 
 module.exports = (config = {}) => {
-  // Initialize our plugin architecture
-  const plugins = plugandplay()
+  const plugins = plugable()
   const server = http.createServer((req, res) => {
     res.end(config.message)
   })
@@ -13,10 +12,13 @@ module.exports = (config = {}) => {
     // highlight-start
     // Return a promise
     start: async () => {
+      const info = {
+        time: new Date()
+      }
       // Wait for the promise to resolve
-      return await plugins.hook({
-        // highlight-stop
-        event: 'server:start',
+      info.port = await plugins.call({
+        // highlight-end
+        name: 'server:start',
         args: {
           config: config,
           server: server
@@ -32,9 +34,10 @@ module.exports = (config = {}) => {
               }, 1000)
             })
           })
-          // highlight-stop
+          // highlight-end
         }
       })
+      return info
     },
     stop: () => {
       server.close()

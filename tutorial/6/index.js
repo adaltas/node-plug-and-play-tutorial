@@ -1,9 +1,9 @@
 
 const readline = require('readline')
-const app = require('./app')()
+const myapp = require('./app')()
 
-app.plugins.register({
-  module: 'plugin:enhancer',
+myapp.plugins.register({
+  name: 'plugin:enhancer',
   hooks: {
     'server:start': ({config, server}, handler) => {
       if( !config.port ){
@@ -14,16 +14,16 @@ app.plugins.register({
   }
 })
 
-app.plugins.register({
-  module: 'plugin:reporter',
+myapp.plugins.register({
+  name: 'plugin:reporter',
   hooks: {
     'server:start': {
       before: 'plugin:enhancer',
       handler: (args, handler) => {
         return () => {
-          const result = handler.call(null, args)
+          const info = handler.call(null, args)
           process.stdout.write('Server is started\n')
-          return result
+          return info
         }
       }
     }
@@ -39,12 +39,13 @@ rl.on('line', async (line) => {
   switch (line.trim()) {
     case 'start':
       // highlight-start
-      const info = await app.start()
+      // Get the info object and print the port number
+      const info = await myapp.start()
       process.stdout.write(`Port is ${info.port}\n`)
-      // highlight-stop
+      // highlight-end
       break;
     case 'stop':
-      app.stop()
+      myapp.stop()
       break;
     default:
       process.stdout.write('Only `start` and `stop` are supported\n')

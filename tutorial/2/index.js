@@ -1,9 +1,9 @@
 
 const readline = require('readline')
-const app = require('./app')()
+const myapp = require('./app')()
 
 // highlight-start
-app.plugins.register({
+myapp.plugins.register({
   hooks: {
     'server:start': ({config}) => {
       // Set the default port value
@@ -13,7 +13,7 @@ app.plugins.register({
     }
   }
 })
-// highlight-stop
+// highlight-end
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -23,10 +23,10 @@ rl.prompt();
 rl.on('line', (line) => {
   switch (line.trim()) {
     case 'start':
-      app.start()
+      myapp.start()
       break;
     case 'stop':
-      app.stop()
+      myapp.stop()
       break;
     default:
       process.stdout.write('Only `start` and `stop` are supported\n')

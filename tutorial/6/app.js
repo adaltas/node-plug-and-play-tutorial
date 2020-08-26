@@ -2,8 +2,7 @@ const http = require('http')
 const plugable = require('plugable')
 
 module.exports = (config = {}) => {
-  // Initialize our plugin architecture
-  const plugins = plugandplay()
+  const plugins = plugable()
   const server = http.createServer((req, res) => {
     res.end(config.message)
   })
@@ -14,20 +13,21 @@ module.exports = (config = {}) => {
         time: new Date()
       }
       // highlight-start
-      // Get the result returned by the last hook handler being called
-      info.port = await plugins.hook({
-      // highlight-stop
-        event: 'server:start',
+      // Get the result returned by the last called handler
+      info.port = await plugins.call({
+      // highlight-end
+        name: 'server:start',
         args: {
           config: config,
           server: server
         },
+        // highlight-start
+        // Handler returning the port number
         handler: ({config, server}) => {
           server.listen(config.port)
-          // highlight-start
           return server.address().port
-          // highlight-stop
         }
+        // highlight-end
       })
       return info
     },
