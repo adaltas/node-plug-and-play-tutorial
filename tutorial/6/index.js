@@ -16,6 +16,7 @@ myapp.plugins.register({
 
 myapp.plugins.register({
   name: 'plugin:reporter',
+  required: 'plugin:enhancer',
   hooks: {
     'server:start': {
       before: 'plugin:enhancer',

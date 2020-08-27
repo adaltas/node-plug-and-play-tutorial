@@ -20,7 +20,7 @@ child.register({
   }
 })
 // Call the hook
-child.hook({
+child.call({
   event: 'app:test',
   args: {},
   handler: () => {
