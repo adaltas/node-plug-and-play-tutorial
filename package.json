@@ -1,15 +1,15 @@
 {
-  "name": "plugable-tutorial",
+  "name": "plug-and-play-tutorial",
   "version": "0.0.0",
   "author": "David Worms <david@adaltas.com>",
   "bugs": {
-    "url": "https://github.com/adaltas/node-plugable-tutorial/issues"
+    "url": "https://github.com/adaltas/node-plug-and-play-tutorial/issues"
   },
-  "description": "The Plugable tutorial showing how to build an plugable architecture into your libraries.",
+  "description": "The Plugable tutorial showing how to build an plugin architecture into your libraries.",
   "dependencies": {
-    "plugable": "^0.0.0"
+    "plug-and-play": "^0.0.0"
   },
-  "homepage": "https://github.com/adaltas/node-plugable#readme",
+  "homepage": "https://github.com/adaltas/node-plug-and-play-tutorial#readme",
   "keywords": [
     "plugin",
     "extension",

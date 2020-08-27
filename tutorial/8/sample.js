@@ -1,6 +1,6 @@
-const plugable = require('../../lib')
+const plugandplay = require('../../lib')
 // Initialize a parent and register a hook
-const parent = plugable()
+const parent = plugandplay()
 parent.register({
   hooks: {
     'app:test': () => {
@@ -9,7 +9,7 @@ parent.register({
   }
 })
 // Initialize a child referencing a parent and register a hook
-const child = plugable({
+const child = plugandplay({
   parent: parent
 })
 child.register({

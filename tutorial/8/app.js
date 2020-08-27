@@ -1,10 +1,10 @@
 
 const http = require('http')
-const plugable = require('plugable')
+const plugandplay = require('plug-and-play')
 
 module.exports = (config = {}) => {
   // highlight-start
-  const plugins = plugable({
+  const plugins = plugandplay({
     // Pass the global plugins instance
     parent: module.exports.plugins
   })
@@ -44,5 +44,5 @@ module.exports = (config = {}) => {
 
 // highlight-start
 // Export global plugins
-module.exports.plugins = plugable()
+module.exports.plugins = plugandplay()
 // highlight-end

@@ -1,9 +1,9 @@
 
 const http = require('http')
-const plugable = require('plugable')
+const plugandplay = require('plug-and-play')
 
 module.exports = (config = {}) => {
-  const plugins = plugable()
+  const plugins = plugandplay()
   const server = http.createServer((req, res) => {
     res.end(config.message)
   })

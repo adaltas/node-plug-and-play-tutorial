@@ -1,14 +1,14 @@
 
 const http = require('http')
 // highlight-start
-// Import the Plugable module
-const plugable = require('plugable')
+// Import the Plug and Play module
+const plugandplay = require('plug-and-play')
 // highlight-end
 
 module.exports = (config = {}) => {
   // highlight-start
   // Initialize our plugin architecture
-  const plugins = plugable()
+  const plugins = plugandplay()
   // highlight-end
   const server = http.createServer((req, res) => {
     res.end(config.message)

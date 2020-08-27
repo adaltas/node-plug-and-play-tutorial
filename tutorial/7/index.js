@@ -21,8 +21,12 @@ myapp.plugins.register({
     'server:start': {
       before: 'plugin:enhancer',
       handler: (args, handler) => {
+        //highlight-start
+        // Return a promise
         return async () => {
+          // Obtain a promise
           const info = await handler.call(null, args)
+          //highlight-end
           process.stdout.write('Server is started\n')
           return info
         }
