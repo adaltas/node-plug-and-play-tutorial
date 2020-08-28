@@ -18,9 +18,13 @@ myapp.plugins.register({
   hooks: {
     'server:start': {
       handler: (args, handler) => {
+        // Return a new handler function
         return () => {
+          // Call the original handler
           const info = handler.call(null, args)
+          // Print a message
           process.stdout.write('Server is started\n')
+          // Return whatever the original handler was returning
           return info
         }
       }
